@@ -1,5 +1,6 @@
 from typing import List
 
+from bson import ObjectId as OID
 from fastapi import APIRouter, Path, Response, Depends
 from fastapi.responses import JSONResponse
 
@@ -25,9 +26,15 @@ async def get_short(slug: str = Path(title="The slug to get")) -> Response:
 
 
 @router.get("/", summary="Get all short URLs", responses={200: {"model": List[responses.ShortURL]}})
-async def get_all_shorts(user: auth.User = Depends(get_user)) -> Response:
-    shorts = [x.dump() for x in await Short.find(q(owner=user.id)).to_list(None)]
-    return JSONResponse(content=shorts)
+async def get_all_shorts(
+    page: int = 0, limit: int = 25, user: auth.User = Depends(get_user)
+) -> Response:
+    if not user:
+        return JSONResponse(status_code=401, content={"error": "Invalid token"})
+    shorts = await Short.find(q(owner=OID(user.id))).to_list(None)
+    current_page = shorts[page * limit : (page + 1) * limit]
+    result = [x.dump() for x in current_page]
+    return JSONResponse(content=result)
 
 
 @router.post(
