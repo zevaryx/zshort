@@ -9,3 +9,5 @@ Create a `.env` file with your MongoDB connection information, either as a URI i
 - `MONGO_USER`
 - `MONGO_PASS`
 - `MONGO_PORT`
+
+Then, run `uvicorn zshort:app --port=<port> --workers=<workers>` to run the app

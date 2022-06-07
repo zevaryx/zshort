@@ -61,9 +61,6 @@ async def register(request: RegisterRequest) -> Response:
     if user:
         return JSONResponse(status_code=400, content={"error": "Username already exists"})
 
-    if request.password != request.pass_verify:
-        return JSONResponse(status_code=400, content={"error": "Password do not match"})
-
     hash = ph.hash(request.password)
     user = DBUser(
         username=request.username, hash=hash, token=ulid.new().str, used_invite=request.invite

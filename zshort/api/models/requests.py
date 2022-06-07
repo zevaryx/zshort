@@ -24,7 +24,6 @@ class LoginRequest(BaseModel):
 
 
 class RegisterRequest(LoginRequest):
-    pass_verify: str
     invite: str
 
 
