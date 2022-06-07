@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "zshort"
+version = "0.1.0"
+description = ""
+authors = ["Zevaryx <zevaryx@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+motor = "^2.5.1"
+pytz = "^2022.1"
+python-dotenv = "^0.20.0"
+fastapi = "^0.78.0"
+umongo = "^3.1.0"
+nanoid = "^2.0.0"
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+argon2-cffi = "^21.3.0"
+ulid-py = "^1.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
