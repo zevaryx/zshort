@@ -11,6 +11,13 @@ class SlugRequest(BaseModel):
     expires_at: Optional[datetime] = None
 
 
+class SlugPatchRequest(BaseModel):
+    url: Optional[str] = None
+    slug: Optional[str] = None
+    title: Optional[str] = None
+    expires_at: Optional[datetime] = None
+
+
 class LoginRequest(BaseModel):
     username: str
     password: str

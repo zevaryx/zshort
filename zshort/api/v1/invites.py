@@ -7,7 +7,7 @@ from zshort.auth.oauth import get_user
 from zshort.db import q
 from zshort.db.models import Invite
 
-router = APIRouter(prefix="/invites", tags=["invites"])
+router = APIRouter(prefix="/invite", tags=["invite"])
 
 
 @router.post(

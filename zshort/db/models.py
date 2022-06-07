@@ -40,7 +40,7 @@ class User(Document):
     full_name: Optional[str] = fields.StringField(default=None)
     disabled: bool = fields.BooleanField(default=False)
     hash: str = fields.StringField()
-    token: str = fields.StringField()
+    token: str = fields.StringField(default=generate_ulid)
     admin: bool = fields.BooleanField(default=False)
     max_invites: int = fields.BooleanField(default=5)
     used_invite: Optional[str] = fields.StringField(default=None)
