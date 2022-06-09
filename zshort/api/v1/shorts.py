@@ -140,7 +140,7 @@ async def create_short(
             return JSONResponse(
                 status_code=400, content={"error": "Slug size must be >= 3 and <= 32"}
             )
-        short = Short(slug=request.slug, long_url=request.url, title=request.title)
+        short = Short(slug=request.slug, long_url=request.url, title=request.title, owner=user.id)
 
     try:
         await short.commit()
