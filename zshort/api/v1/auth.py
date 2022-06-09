@@ -51,7 +51,7 @@ async def register(request: RegisterRequest) -> Response:
     invite = await Invite.find_one(q(token=request.invite))
     if not invite:
         return JSONResponse(status_code=400, content={"error": "Invite is not valid"})
-    elif (invite.uses != 0 and invite.uses >= invite.max_uses) or not invite.active:
+    elif (invite.max_uses != 0 and invite.uses >= invite.max_use) or not invite.active:
         invite.active = False
         await invite.commit()
         return JSONResponse(status_code=400, content={"error": "Invite is not valid"})
